@@ -2,11 +2,9 @@ package ua.lukianenko.ums.dto;
 
 import ua.lukianenko.ums.model.persons.Teacher;
 import lombok.*;
-
 import java.util.Set;
 
-@Getter
-@ToString
+@Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class SubjectDTO extends AbstractDTO {

@@ -10,7 +10,7 @@ public interface GroupService {
 
     ResponseEntity<GroupDTO> getById(Long id);
 
-    ResponseEntity<Long> saveGroup(GroupDTO groupDTO);
+    ResponseEntity<Long> save(GroupDTO groupDTO);
 
     ResponseEntity<Long> updateById(Long id, GroupDTO groupDTO);
 

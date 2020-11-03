@@ -1,4 +1,4 @@
-package ua.lukianenko.ums.repository;
+package ua.lukianenko.ums.repositorys;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

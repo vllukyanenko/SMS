@@ -18,7 +18,7 @@ public class GroupsController {
 
     @PostMapping
     public ResponseEntity<Long> saveGroup(@RequestBody GroupDTO groupDTO) {
-        return this.groupService.saveGroup(groupDTO);
+        return this.groupService.save(groupDTO);
     }
 
     @GetMapping()

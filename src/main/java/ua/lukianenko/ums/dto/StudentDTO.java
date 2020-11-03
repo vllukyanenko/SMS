@@ -4,9 +4,7 @@ import ua.lukianenko.ums.model.Group;
 import lombok.*;
 
 
-@Getter
-@ToString
-@Setter
+@Data
 @NoArgsConstructor
 public class StudentDTO extends PersonDTO {
 

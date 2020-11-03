@@ -35,7 +35,7 @@ public class StudentController {
 
    @PostMapping
     public ResponseEntity<Long> saveStudent(@RequestBody StudentDTO studentDTO){
-        return this.studentService.saveGroup(studentDTO);
+        return this.studentService.save(studentDTO);
    }
 
    @PutMapping("{id}")

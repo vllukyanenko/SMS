@@ -1,13 +1,10 @@
 package ua.lukianenko.ums.dto;
 
 import lombok.*;
-
 import java.sql.Date;
 
 
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class PersonDTO extends AbstractDTO {

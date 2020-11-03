@@ -6,7 +6,7 @@ import ua.lukianenko.ums.converter.impl.group_converter.ToGroupConverter;
 import ua.lukianenko.ums.converter.impl.group_converter.ToGroupDTOConverter;
 import ua.lukianenko.ums.dto.GroupDTO;
 import ua.lukianenko.ums.model.Group;
-import ua.lukianenko.ums.repository.GroupRepository;
+import ua.lukianenko.ums.repositorys.GroupRepository;
 import ua.lukianenko.ums.service.GroupService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Transactional
     @Override
-    public ResponseEntity<Long> saveGroup(GroupDTO groupDTO) {
+    public ResponseEntity<Long> save(GroupDTO groupDTO) {
         log.info("IN GroupServiceIml saveGroupDTO {}", groupDTO);
 
         return new ResponseEntity<>(groupRepository.save(toGroupConverter.convert(groupDTO)).getId()
@@ -101,12 +101,12 @@ public class GroupServiceImpl implements GroupService {
                 Sort.by(sorting).descending();
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
 
-        Page<Group> groups =groupRepository.findAll(pageable);
+        Page<Group> groupPage =groupRepository.findAll(pageable);
 
         return new PageResponse<>(
-                toGroupDTOConverter.convert( groups.getContent()),
-                groups.getTotalElements(),
-                groups.getNumber()+1,
-                groups.getSize());
+                toGroupDTOConverter.convert( groupPage.getContent()),
+                groupPage.getTotalElements(),
+                groupPage.getNumber()+1,
+                groupPage.getSize());
     }
 }

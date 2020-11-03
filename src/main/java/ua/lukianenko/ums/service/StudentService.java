@@ -10,7 +10,7 @@ public interface StudentService {
 
     ResponseEntity<StudentDTO> getById(Long id);
 
-    ResponseEntity<Long> saveGroup(StudentDTO studentDTO);
+    ResponseEntity<Long> save(StudentDTO studentDTO);
 
     ResponseEntity<Long> updateById(Long id, StudentDTO studentDTO);
 

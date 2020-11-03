@@ -2,8 +2,7 @@ package ua.lukianenko.ums.dto;
 
 import lombok.*;
 
-@Getter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeacherDTO extends PersonDTO {

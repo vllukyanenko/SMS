@@ -17,7 +17,7 @@ import ua.lukianenko.ums.converter.impl.students_converter.ToStudentDTOConverter
 import ua.lukianenko.ums.dto.StudentDTO;
 import ua.lukianenko.ums.exceptions.ObjectNotFoundException;
 import ua.lukianenko.ums.model.persons.Student;
-import ua.lukianenko.ums.repository.StudentRepository;
+import ua.lukianenko.ums.repositorys.StudentRepository;
 import ua.lukianenko.ums.service.StudentService;
 
 import java.util.List;
@@ -41,7 +41,8 @@ public class StudentServiceImpl implements StudentService {
     }
     @Transactional
     @Override
-    public ResponseEntity<Long> saveGroup(StudentDTO studentDTO) {
+    public ResponseEntity<Long> save(StudentDTO studentDTO) {
+        log.info("IN StudentServiceImpl saveGroup {}", studentDTO);
         return new ResponseEntity<>(studentRepository.save(toStudentConverter.convert(studentDTO)).getId()
                 , HttpStatus.CREATED);
     }
@@ -86,14 +87,15 @@ public class StudentServiceImpl implements StudentService {
     @Transactional
     @Override
     public PageResponse<StudentDTO> getPage(int pageNo, int pageSize, String sorting, String name) {
+        log.info("IN StudentServiceImpl getPage with sorting");
         Sort sort = name.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sorting).ascending():
                 Sort.by(sorting).descending();
         Pageable pageable = PageRequest.of(pageNo-1, pageSize, sort);
-        Page<Student> students = studentRepository.findAll(pageable);
+        Page<Student> studentPage = studentRepository.findAll(pageable);
         return new PageResponse<>(
-                toStudentDTOConverter.convert(students.getContent()),
-                students.getTotalElements(),
-                students.getNumber()+1,
-                students.getSize());
+                toStudentDTOConverter.convert(studentPage.getContent()),
+                studentPage.getTotalElements(),
+                studentPage.getNumber()+1,
+                studentPage.getSize());
     }
 }
