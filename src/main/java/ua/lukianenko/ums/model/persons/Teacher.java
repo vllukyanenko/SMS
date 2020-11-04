@@ -7,13 +7,10 @@ import java.sql.Date;
 @Data
 @Entity(name = "Teacher")
 @Table(name = "teacher", schema = "ums")
-@Access(AccessType.FIELD)
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Teacher extends Person {
 
     @Column(nullable = false)
-    @NonNull
     private String phoneNumber;
 
     @Builder

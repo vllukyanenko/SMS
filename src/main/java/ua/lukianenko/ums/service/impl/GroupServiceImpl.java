@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
-
 import java.util.List;
 
 @Slf4j
@@ -41,7 +40,6 @@ public class GroupServiceImpl implements GroupService {
 
         return new ResponseEntity<>(groupRepository.save(toGroupConverter.convert(groupDTO)).getId()
                 , HttpStatus.CREATED);
-
     }
 
     @Transactional
@@ -75,7 +73,7 @@ public class GroupServiceImpl implements GroupService {
         group.setName(groupDTO.getName());
         group.setHeadman(groupDTO.getHeadman());
 
-        return new ResponseEntity<>(toGroupDTOConverter.convert(groupRepository.save(group)).getId(), HttpStatus.OK);
+        return new ResponseEntity<>(groupRepository.save(group).getId(), HttpStatus.OK);
     }
 
 
@@ -104,7 +102,7 @@ public class GroupServiceImpl implements GroupService {
         Page<Group> groupPage =groupRepository.findAll(pageable);
 
         return new PageResponse<>(
-                toGroupDTOConverter.convert( groupPage.getContent()),
+                toGroupDTOConverter.convert(groupPage.getContent()),
                 groupPage.getTotalElements(),
                 groupPage.getNumber()+1,
                 groupPage.getSize());

@@ -20,8 +20,8 @@ import ua.lukianenko.ums.model.persons.Student;
 import ua.lukianenko.ums.model.persons.Teacher;
 import ua.lukianenko.ums.repositorys.TeacherRepository;
 import ua.lukianenko.ums.service.TeacherService;
-
 import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor

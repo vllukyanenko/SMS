@@ -33,7 +33,13 @@ public class StudentController {
         return this.studentService.getPage(pageNumber,pageSize,sorting, name);
     }
 
-   @PostMapping
+    @DeleteMapping("{id}")
+    public ResponseEntity<Long> deleteGroupByID(@PathVariable Long id) {
+        return this.studentService.deleteById(id);
+    }
+
+
+    @PostMapping
     public ResponseEntity<Long> saveStudent(@RequestBody StudentDTO studentDTO){
         return this.studentService.save(studentDTO);
    }

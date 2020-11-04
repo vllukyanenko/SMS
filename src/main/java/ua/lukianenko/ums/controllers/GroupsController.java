@@ -16,10 +16,18 @@ public class GroupsController {
     @NonNull
     private final GroupService groupService;
 
-    @PostMapping
-    public ResponseEntity<Long> saveGroup(@RequestBody GroupDTO groupDTO) {
-        return this.groupService.save(groupDTO);
+
+    @GetMapping("{id}")
+    public ResponseEntity<GroupDTO> getGroup(@PathVariable Long id) {
+        return this.groupService.getById(id);
     }
+
+
+    @GetMapping("/all groups")
+    public ResponseEntity<List<GroupDTO>> getAllGroups() {
+        return this.groupService.getAll();
+    }
+
 
     @GetMapping()
     public PageResponse<GroupDTO> getGroupsPage(@RequestParam(value ="pageNumber" ) Integer pageNumber,
@@ -30,20 +38,17 @@ public class GroupsController {
         return this.groupService.getPage(pageNumber,pageSize, sorting, name);
     }
 
-    @GetMapping("/all groups")
-    public ResponseEntity<List<GroupDTO>> getAllGroups() {
-        return this.groupService.getAll();
-    }
-
-    @GetMapping("{id}")
-    public ResponseEntity<GroupDTO> getGroup(@PathVariable Long id) {
-        return this.groupService.getById(id);
-    }
-
     @DeleteMapping("{id}")
     public ResponseEntity<Long> deleteGroupByID(@PathVariable Long id) {
         return this.groupService.deleteById(id);
     }
+
+
+    @PostMapping
+    public ResponseEntity<Long> saveGroup(@RequestBody GroupDTO groupDTO) {
+        return this.groupService.save(groupDTO);
+    }
+
 
     @PutMapping("{id}")
     public ResponseEntity<Long> updateGroup(@PathVariable Long id, @RequestBody GroupDTO groupDTO) {
